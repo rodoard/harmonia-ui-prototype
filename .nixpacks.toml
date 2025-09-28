@@ -1,15 +1,17 @@
 [phases.setup]
-cmds = ["npm install --legacy-peer-deps"]
+cmds = ["corepack enable pnpm", "pnpm install"]
 
 [phases.build]
-cmds = ["npm run build"]
+cmds = ["pnpm run build"]
 
 [start]
-cmd = "npm run start"
+cmd = "pnpm run start"
 
 [build.args]
-NODE_VERSION = "20"
+NODE_VERSION = "18"
 
 [build.environment]
 NPM_CONFIG_PRODUCTION = "false"
 NODE_ENV = "production"
+PNPM_HOME = "/root/.local/share/pnpm"
+PATH = "${PNPM_HOME}:${PATH}"
