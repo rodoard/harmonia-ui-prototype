@@ -48,7 +48,7 @@ export default defineConfig(({ mode }) => {
       allowedHosts: [
         'localhost',
         '127.0.0.1',
-        'harmonia-ui-production-243e.up.railway.app'
+        'https://harmonia-ui-production-c554.up.railway.app'
       ]
     },
     base: './'
