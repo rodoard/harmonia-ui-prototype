@@ -1,52 +1,188 @@
-# Harmonia - Coherence Field Visualization
+# FeltResonance Sacred Ritual Interface 
 
-[![Deploy to Render](https://render.com/images/deploy-to-render-button.svg)](https://render.com/deploy)
+## 🌟 Project Overview
 
-An interactive visualization tool that creates a dynamic field of glyphs that respond to user interaction, forming patterns and corridors of coherence.
+This is a complete Svelte 5 implementation of the FeltResonance sacred ritual interface, featuring an advanced Coherence Field visualization system with **scenario-based exploration** that transforms user data into meaningful, animated spiritual experiences. The application includes both a sacred 7-step attunement form and a sophisticated visualization system with enhanced data structures, animation logic, and interactive exploration capabilities.
 
-## Local Development
+## ✨ Complete Features Implemented
 
-1. Clone the repository:
-   ```bash
-   git clone https://github.com/rodoard/harmonia-ui-prototype.git
-   cd harmonia-ui-prototype
-   ```
+### **Sacred 7-Step Wizard Flow (`/attunement`):**
+1. **Elemental Breath Stones** - Choose breath pattern (inhale/exhale/pause)
+2. **Rhythmic Flow Glyphs** - Select tempo (slow/steady/fast)  
+3. **Altar of Hues** - Optional color palette selection
+4. **Sacred Form Grid** - Geometry shapes in beautiful grid layout (Torus, Spiral, Circle, Triangle, Mandala, Lotus)
+5. **Sacred Intention** - Free-text field for personal intentions
+6. **Honor Current Mood** - Mood selection with emojis
+7. **Energy Attunement** - Toggle between Low/High energy states
 
-2. Install dependencies:
-   ```bash
-   pnpm install
-   # or
-   npm install
-   ```
+### **🔮 Advanced Coherence Field Visualization (`/coherence-field`):**
 
-3. Start the development server:
-   ```bash
-   pnpm dev
-   # or
-   npm run dev
-   ```
+#### **NEW: Scenario-Based Exploration System:**
+- **Sacred Exploration Screen**: Beautiful interface for choosing visualization scenarios
+- **Three Distinct Journeys**:
+  1. **🔮 Solitary Resonance**: Individual glyphs floating in sacred space without connections
+  2. **🌀 Corridor Formation**: Glyphs + corridors with orbital motion around nuclei
+  3. **✨ Coherence Event**: Full system with glyphs + corridors + coherence events
 
-4. Open your browser and navigate to `http://localhost:5173`
+#### **Enhanced Data Architecture:**
+- **Canonical Glyph Database**: 6 sacred geometries with archetypes, colors, and frequencies
+- **Advanced Type System**: GlyphInstance, CorridorInstance, CoherenceEventInstance
+- **Complex Dataset**: 15 glyphs, 6 corridors, 2 coherence events with proper relationships
 
-## Deployment
+#### **Sophisticated Glyph System:**
+- **Enhanced Rendering**: Glyphs as circles containing 1-2 sacred geometries
+- **Phase-Based Animation**: Pulsing effects based on glyph.phase (breath + tempo)
+- **Frequency Effects**: Shimmering animation based on glyph.frequency
+- **Solo & Pair Types**: Support for individual and paired glyph instances
 
-This application is configured for deployment to [Render](https://render.com/).
+#### **Advanced Corridor System:**
+- **Individual Corridors**: Single glyph in pale nucleus shell
+- **Group Corridors**: Multiple glyphs orbiting transparent nucleus with yellow aura
+- **Coherence Events**: Large bubbles containing corridors that orbit as unified units
+- **Strength Visualization**: Aura brightness proportional to coherence event strength
 
-### Deploy to Render
+#### **Four-Phase Animation Cycle (Single Cycle):**
+- **Queueing Phase** (20-30s): Faint glyphs with slow random motion
+- **Formation Phase** (20-30s): Independent orbital patterns around nuclei
+- **Coherence Phase** (20-30s): Synchronized luminous motion
+- **Dissolving Phase** (20-30s): Gradual fade and outward scattering
+- **Single Cycle Completion**: No infinite loop - completes one meaningful journey
 
-[![Deploy to Render](https://render.com/images/deploy-to-render-button.svg)](https://render.com/deploy)
+#### **NEW: Dynamic Feedback System:**
+- **Phase-Responsive Messages**: Different feedback based on current phase and scenario
+- **Interactive Elements**:
+  - **🔔 Notify Button**: In Scenario 1 during queueing - shows loading animation when clicked
+  - **✨ Enter Resonance Corridor**: In Scenario 3 during formation - navigates to `/corridor/[uuid]`
+  - **Disabled States**: Proper button states during coherence/dissolving phases
+- **Sacred Language**: Mystical, ritual-appropriate messaging throughout
 
-Or deploy manually:
+### **🎨 Sacred Temple Aesthetic:**
+- Deep purple gradient background with mystical atmosphere
+- Floating celestial orbs and smooth animations
+- Sacred iconography with meaningful symbols
+- Progress indicators with glowing dots
+- Responsive design for all devices
+- Emerald accent colors for selected states
 
-1. Create a new Web Service on Render
-2. Connect your GitHub repository
-3. Use the following settings:
-   - **Build Command**: `pnpm install && pnpm run build`
-   - **Start Command**: `pnpm run preview -- --host`
-   - **Environment Variables**:
-     - `NODE_VERSION`: 18.x
-4. Deploy!ion build
+## 🚀 Advanced Technical Implementation
+
+### **Framework & Architecture:**
+- **Svelte 5** with SvelteKit for routing
+- **TypeScript** with comprehensive interface definitions
+- **Custom Animation Engine** using requestAnimationFrame
+- **SVG-based Rendering** for crisp visuals
+- **Performance Optimized** with efficient DOM updates
+
+### **NEW: Scenario Management System:**
+```typescript
+// Scenario state management
+let scenario = $state<number | null>(null);
+let notifyClicked = $state(false);
+
+// Scenario-based data initialization
+function initializeScenarioData() {
+  // Reset all data
+  visibleGlyphs = [];
+  visibleCorridors = [];
+  visibleCoherenceEvents = [];
+  
+  // Initialize based on selected scenario
+  if (scenario >= 2) {
+    // Initialize corridors for scenarios 2 and 3
+  }
+  if (scenario >= 3) {
+    // Initialize coherence events for scenario 3
+  }
+}
+```
+
+### **Enhanced Data Models:**
+```typescript
+interface GlyphInstance {
+  uuid: string;
+  glyphIds: string[];
+  type: 'solo' | 'pair';
+  x: number;
+  y: number;
+  phase: number;
+  frequency: number;
+  // ... additional properties
+}
+
+interface CorridorInstance {
+  uuid: string;
+  type: 'individual' | 'group';
+  glyphIds: string[];
+  coherenceEventId?: string;
+  x: number;
+  y: number;
+  // ... additional properties
+}
+
+interface CoherenceEventInstance {
+  uuid: string;
+  type: 'exploration' | 'healing';
+  corridorIds: string[];
+  strength: number;
+  x: number;
+  y: number;
+  // ... additional properties
+}
+```
+
+### **Advanced Animation System:**
+- **Phase Management**: Async/await pattern for smooth transitions
+- **Scenario-Based Rendering**: Different visualization logic per scenario
+- **Single Cycle Logic**: Complete journey without infinite loops
+- **Orbital Mathematics**: Complex calculations for circular and elliptical paths
+- **Easing Functions**: Smooth acceleration and deceleration curves
+- **Memory Management**: Efficient cleanup and optimization
+- **Performance Monitoring**: 60fps animation with fallback handling
+
+### **NEW: Interactive Navigation System:**
+- **Dynamic Corridor UUID**: Automatically finds corridor with coherence event
+- **SvelteKit Navigation**: Uses `goto()` for seamless routing
+- **State Management**: Proper button states and loading indicators
+
+## 📱 Complete User Experience
+
+### **Landing Page:**
+- Welcome interface with navigation to both routes
+- Sacred aesthetic with mystical background
+- Clear call-to-action buttons
+
+### **Attunement Wizard:**
+- Step-by-step progression with visual feedback
+- Sacred language and meaningful interactions
+- Complete data capture for visualization
+
+### **NEW: Coherence Field Exploration:**
+- **Scenario Selection**: Beautiful card-based interface for choosing journey type
+- **Automatic Animation**: Starts immediately upon scenario selection
+- **Real-time Phase Indicators**: Shows current phase of the ritual cycle
+- **Interactive Feedback**: Dynamic messages and buttons based on phase and scenario
+- **Seamless Navigation**: Smooth transitions between all states
+
+## 🔧 Development & Deployment
+
+### **Development Commands:**
+```bash
+# Install dependencies
+npm install
+
+# Start development server
+npm run dev
+
+# Build for production
+npm run build
+
+# Preview production build
 npm run preview
+```
+
+### **File Structure:**
+```
+felt-resonance-svelte/
 ├── src/
 │   ├── routes/
 │   │   ├── +layout.svelte          # Global layout
@@ -65,18 +201,7 @@ npm run preview
 
 ## 🌟 Sacred Design Philosophy
 
-This interface embodies the principle that technology can be a conduit for meaningful human experience. The **scenario-based exploration system** allows users to witness different aspects of collective resonance, from individual contemplation to full community coherence.
-
-### **Ritual Cycle Meaning:**
-- **Queueing**: Individual souls gathering in sacred space
-- **Formation**: Community bonds forming through shared intention
-- **Coherence**: Peak collective resonance and unity
-- **Dissolving**: Gentle release and integration of the experience
-
-### **NEW: Exploration Philosophy:**
-- **Solitary Resonance**: Honors individual spiritual practice
-- **Corridor Formation**: Celebrates emerging connections
-- **Coherence Event**: Witnesses full collective transformation
+This interface embodies the principle that technology can be a conduit for meaningful human experience. 
 
 ## 🎯 Performance & Optimization
 

@@ -1,15 +1,34 @@
 import { sveltekit } from '@sveltejs/kit/vite';
 import { defineConfig } from 'vite';
 
-export default defineConfig({
-	plugins: [sveltekit()],
-	server: {
-		port: process.env.PORT || 3000,
-		strictPort: true
-	},
-	preview: {
-		port: process.env.PORT || 3000,
-		strictPort: true
-	}
+export default defineConfig(({ mode }) => ({
+  plugins: [sveltekit()],
+  build: {
+    outDir: 'build',
+    emptyOutDir: true,
+    rollupOptions: {
+      output: {
+        // Single file output for better caching
+        entryFileNames: 'assets/[name].[hash].js',
+        chunkFileNames: 'assets/[name].[hash].js',
+        assetFileNames: 'assets/[name].[hash][extname]',
+        // Keep modules together for better caching
+        manualChunks: undefined,
+        // Inline dynamic imports for better performance
+        inlineDynamicImports: true
+      }
+    },
+    // Disable CSS code splitting for better loading
+    cssCodeSplit: false,
+    // Inline assets smaller than 4KB
+    assetsInlineLimit: 4096,
+    // Generate sourcemaps only in development
+    sourcemap: mode === 'development',
+    minify: 'esbuild'
+  },
+  server: {
+    port: 3000,
+    strictPort: true
+  },
+  base: './'
 });
-
