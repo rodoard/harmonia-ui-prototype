@@ -1,9 +1,9 @@
 services:
   - type: web
     name: harmonia-ui
-    env: node
+    env: static
     buildCommand: pnpm install && pnpm run build
-    startCommand: pnpm run preview -- --host
+    staticPublishPath: ./build
     envVars:
       - key: NODE_VERSION
         value: 18.x
