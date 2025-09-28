@@ -28,13 +28,12 @@ export default defineConfig(({ mode }) => {
       minify: 'esbuild'
     },
     server: {
+      host: '0.0.0.0', 
       allowedHosts:['https://harmonia-ui-production-c554.up.railway.app']
     },
     preview: {
-     
+      host: '0.0.0.0', 
       allowedHosts: [
-        'localhost',
-        '127.0.0.1',
         'https://harmonia-ui-production-c554.up.railway.app'
       ]
     },
