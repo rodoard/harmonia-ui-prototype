@@ -1,0 +1,10 @@
+services:
+  - type: web
+    name: harmonia-ui
+    env: node
+    buildCommand: pnpm install && pnpm run build
+    startCommand: pnpm run preview -- --host
+    envVars:
+      - key: NODE_VERSION
+        value: 18.x
+    plan: free
