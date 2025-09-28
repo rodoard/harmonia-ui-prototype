@@ -28,23 +28,10 @@ export default defineConfig(({ mode }) => {
       minify: 'esbuild'
     },
     server: {
-      port: 3000,
-      strictPort: true,
-      hmr: {
-        host: 'harmonia-ui-production-243e.up.railway.app',
-        protocol: 'wss',
-        clientPort: 443
-      }
+      allowedHosts:['https://harmonia-ui-production-c554.up.railway.app']
     },
     preview: {
-      host: true,
-      port: 3000,
-      strictPort: true,
-      headers: {
-        'Access-Control-Allow-Origin': '*',
-        'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, PATCH, OPTIONS',
-        'Access-Control-Allow-Headers': 'X-Requested-With, content-type, Authorization'
-      },
+     
       allowedHosts: [
         'localhost',
         '127.0.0.1',
