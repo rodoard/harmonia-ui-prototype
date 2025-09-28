@@ -29,13 +29,11 @@ export default defineConfig(({ mode }) => {
     },
     server: {
       host: '0.0.0.0', 
-      allowedHosts:['https://harmonia-ui-production-c554.up.railway.app']
+      allowedHosts:true
     },
     preview: {
       host: '0.0.0.0', 
-      allowedHosts: [
-        'https://harmonia-ui-production-c554.up.railway.app'
-      ]
+      allowedHosts: true
     },
     base: './'
   };
