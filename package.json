@@ -2,16 +2,27 @@
   "name": "felt-resonance-svelte",
   "version": "0.0.1",
   "private": true,
+  "engines": {
+    "node": ">=18.0.0",
+    "npm": ">=8.0.0"
+  },
   "scripts": {
-    "build": "vite build",
     "dev": "vite dev",
-    "preview": "vite preview"
+    "build": "vite build",
+    "preview": "vite preview",
+    "predeploy": "npm run build",
+    "deploy:gh-pages": "gh-pages -d build",
+    "deploy:vercel": "vercel --prod",
+    "deploy:netlify": "netlify deploy --prod",
+    "start": "vite preview --port $PORT --host",
+    "railway:build": "npm install && npm run build",
+    "railway:start": "npm run start"
   },
   "devDependencies": {
-    "@sveltejs/adapter-auto": "^3.0.0",
     "@sveltejs/adapter-static": "^3.0.9",
     "@sveltejs/kit": "^2.0.0",
     "@sveltejs/vite-plugin-svelte": "^4.0.0",
+    "gh-pages": "^6.0.0",
     "svelte": "^5.0.0",
     "vite": "^5.0.3"
   },
